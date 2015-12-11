@@ -35,11 +35,11 @@ CLASSPATH=${CLASSPATH}:.
 case "${TEST_TOOL?junit}" in
 
   # vanilla JUnit
-  junit)  java -cp $CLASSPATH $TESTNAME.TestSuite
+  junit)  java -Xmx512m -cp $CLASSPATH $TESTNAME.TestSuite
           ;;
 
   # PIT mutation testing
-  pit)    java -cp $CLASSPATH \
+  pit)    java -Xmx512m -cp $CLASSPATH \
               org.pitest.mutationtest.commandline.MutationCoverageReport \
               --reportDir ./reports \
               --sourceDirs . \
@@ -48,7 +48,7 @@ case "${TEST_TOOL?junit}" in
           ;;
 
   # Jumble mutation testing
-  jumble) java -jar $DEPENDENCIES_DIR/jumble_binary_1.3.0.jar \
+  jumble) java -Xmx512m -jar $DEPENDENCIES_DIR/jumble_binary_1.3.0.jar \
               --classpath $CLASSPATH \
               $TESTNAME.Snippet \
               $TESTNAME.Tests
